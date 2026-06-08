@@ -1,163 +1,212 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Github, ExternalLink, Code2 } from 'lucide-react';
-
-const projects = [
-  {
-    title: 'RAG Knowledge Assistant',
-    description: 'Retrieval-Augmented Generation application built for knowledge retrieval and context-aware responses.',
-    focus: 'Knowledge Retrieval • Vector Search • Backend Engineering',
-    tech: ['Python', 'ChromaDB', 'RAG', 'LLM Integration'],
-    github: 'https://github.com/bansalmannatbansal/rag-knowledge-assistant',
-    demo: null,
-  },
-  {
-    title: 'RishiLearn LMS',
-    description: 'Learning Management System built with Flask containing authentication, leaderboards, and timetable APIs.',
-    focus: 'REST APIs • XP Progress System • Leaderboards',
-    tech: ['Flask', 'Python', 'HTML', 'CSS', 'JavaScript'],
-    github: 'https://github.com/bansalmannatbansal/rishilearn-lms',
-    demo: null,
-  },
-  {
-    title: 'Netflix Data Analysis',
-    description: 'Exploratory data analysis project inspecting 10,000+ Netflix titles to uncover regional outputs and growth trends.',
-    focus: 'Data Cleaning • Data Wrangling • EDA & Visualization',
-    tech: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn'],
-    github: 'https://github.com/bansalmannatbansal/netflix-data-analysis',
-    demo: null,
-  },
-  {
-    title: 'PrintLab',
-    description: 'Campus printing Single Page Application with custom client routing, queue state indicators, and animated ordering.',
-    focus: 'Custom SPA Routing • Queue Indicators • Skeleton Loading',
-    tech: ['JavaScript', 'HTML', 'CSS'],
-    github: 'https://github.com/bansalmannatbansal/print-lab',
-    demo: null,
-  },
-];
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { Github, ExternalLink } from 'lucide-react'
+import RagThumb from '../assets/rag_project_thumb.png'
+import RishiThumb from '../assets/rishilearn_project_thumb.png'
+import NetflixThumb from '../assets/netflix_project_thumb.png'
+import PrintlabThumb from '../assets/printlab_project_thumb.png'
 
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.1,
     },
   },
-};
+}
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
   },
-};
-
-function ProjectCard({ project }) {
-  return (
-    <motion.div
-      variants={cardVariants}
-      className="group relative flex flex-col justify-between rounded-xl p-6 sm:p-8 glass-card hover:-translate-y-1 hover:shadow-lg hover:shadow-[#3B82F6]/5 transition-all duration-300"
-    >
-      <div className="space-y-4">
-        {/* Title & Links */}
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-[#3B82F6] transition-colors duration-200">
-              {project.title}
-            </h3>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mt-1">
-              {project.focus}
-            </p>
-          </div>
-          
-          {/* Link Icons */}
-          <div className="flex items-center gap-2 shrink-0">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1.5 rounded-lg border border-white/[0.06] bg-[#151515]/60 hover:text-white text-gray-400 hover:border-white/20 transition-all duration-200 hover:scale-105"
-              aria-label={`View GitHub repository for ${project.title}`}
-            >
-              <Github className="w-4 h-4" />
-            </a>
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 rounded-lg border border-white/[0.06] bg-[#151515]/60 hover:text-white text-gray-400 hover:border-white/20 transition-all duration-200 hover:scale-105"
-                aria-label={`View live demo for ${project.title}`}
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-gray-400 leading-relaxed font-normal">
-          {project.description}
-        </p>
-
-        {/* Tech stack badges */}
-        <div className="flex flex-wrap gap-1.5 pt-2" aria-label="Technology stack">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="rounded border border-white/[0.06] bg-[#0A0A0A]/50 px-2 py-0.5 text-[10px] font-mono text-gray-400 font-medium tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
 }
 
+const projects = [
+  {
+    num: '01',
+    category: 'AI / MACHINE LEARNING',
+    title: 'RAG Knowledge Assistant',
+    description: 'Semantic search and knowledge retrieval system using vector embeddings and RAG architecture.',
+    tags: ['Python', 'ChromaDB', 'RAG', 'LLM'],
+    image: RagThumb,
+    github: 'https://github.com/bansalmannatbansal/rag-knowledge-assistant',
+    demo: null,
+  },
+  {
+    num: '02',
+    category: 'LMS PLATFORM',
+    title: 'RishiLearn LMS',
+    description: 'Full-stack learning management system with course catalog, leaderboard, XP system, and attendance tracking.',
+    tags: ['Flask', 'Python', 'REST APIs', 'SQLite'],
+    image: RishiThumb,
+    github: 'https://github.com/bansalmannatbansal/rishilearn-lms',
+    demo: '#',
+  },
+  {
+    num: '03',
+    category: 'DATA ENGINEERING',
+    title: 'Netflix Data Analysis',
+    description: 'Exploratory data analysis on 10,000+ Netflix titles — cleaning, regional trends, and visualization.',
+    tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
+    image: NetflixThumb,
+    github: 'https://github.com/bansalmannatbansal/netflix-data-analysis',
+    demo: null,
+  },
+  {
+    num: '04',
+    category: 'FRONTEND SPA',
+    title: 'PrintLab',
+    description: 'Campus printing SPA with custom routing, skeleton loading, cart ordering, and queue indicators.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    image: PrintlabThumb,
+    github: 'https://github.com/bansalmannatbansal/print-lab',
+    demo: '#',
+  },
+]
+
 export default function Projects() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="projects" className="relative bg-[#0A0A0A] section-padding overflow-hidden">
-      <div className="portfolio-container relative z-10">
+    <section
+      id="projects"
+      ref={ref}
+      className="relative bg-[#0A0A0A] section-padding overflow-hidden"
+    >
+      <div className="portfolio-container relative z-10 w-full">
         
-        {/* Section heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center md:text-left"
-        >
-          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-            <Code2 className="w-3.5 h-3.5 text-[#3B82F6]" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
-              Projects
-            </span>
+        {/* Section Heading Row */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14 w-full relative">
+          {/* Giant background PROJECTS watermark */}
+          <div className="absolute left-0 -top-8 font-black text-outline text-[12vw] leading-none select-none pointer-events-none opacity-[0.25] z-0">
+            PROJECTS
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Featured Projects
-          </h2>
-        </motion.div>
 
-        {/* Project grid */}
+          {/* Left Column: Heading */}
+          <motion.div
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            variants={cardVariants}
+            className="lg:col-span-6 text-left relative z-10 pl-2"
+          >
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8] block mb-2">
+              SELECTED WORK
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tighter leading-none uppercase">
+              Portfolio <br />
+              Projects
+            </h2>
+          </motion.div>
+
+          {/* Right Column: Description paragraph */}
+          <motion.div
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            variants={cardVariants}
+            className="lg:col-span-6 text-left relative z-10 lg:pb-1"
+          >
+            <p className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-md border-l border-white/[0.08] pl-5">
+              Technical solutions blending AI engineering, full-stack development, and data-driven narratives.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Projects Cards Grid */}
         <motion.div
-          ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid gap-6 sm:grid-cols-2 items-stretch"
+          className="grid gap-8 sm:grid-cols-2 items-stretch w-full"
         >
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+          {projects.map((proj) => (
+            <motion.div
+              key={proj.title}
+              variants={cardVariants}
+              whileHover={{ y: -4, boxShadow: '0 12px 35px rgba(129,138,248,0.05)' }}
+              className="group relative flex flex-col justify-between rounded-3xl p-6 border border-white/[0.06] bg-white/[0.01] hover:border-white/[0.12] transition-all duration-300 overflow-hidden"
+            >
+              <div className="space-y-5 flex flex-col h-full justify-between">
+                
+                {/* 1. Card Top Metadata Row */}
+                <div className="flex items-center justify-between w-full">
+                  {/* Outline Number index */}
+                  <span className="text-xl font-black text-outline font-mono select-none tracking-tighter leading-none">
+                    {proj.num}
+                  </span>
+
+                  {/* Category Pill badge */}
+                  <span className="rounded-full bg-white/[0.02] border border-white/[0.08] px-3.5 py-1 text-[8px] font-extrabold tracking-widest text-[#818CF8] uppercase">
+                    {proj.category}
+                  </span>
+                </div>
+
+                {/* 2. Visual Image Thumbnail */}
+                <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-950 border border-white/[0.04] relative select-none">
+                  <img
+                    src={proj.image}
+                    alt={`${proj.title} Thumbnail`}
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                  />
+                </div>
+
+                {/* 3. Description & Links Block */}
+                <div className="space-y-4 pt-2">
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-[#818CF8] transition-colors duration-300">
+                      {proj.title}
+                    </h3>
+
+                    {/* Links */}
+                    <div className="flex items-center gap-2 shrink-0">
+                      <a
+                        href={proj.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-lg border border-white/[0.06] bg-white/[0.02] text-gray-400 hover:text-white hover:border-white/20 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+                        aria-label={`View GitHub repository for ${proj.title}`}
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
+                      {proj.demo && (
+                        <a
+                          href={proj.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-lg border border-white/[0.06] bg-white/[0.02] text-gray-400 hover:text-white hover:border-white/20 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+                          aria-label={`View live demo for ${proj.title}`}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-normal text-left">
+                    {proj.description}
+                  </p>
+
+                  {/* Tech Stack badging */}
+                  <div className="flex flex-wrap gap-1.5 pt-1" aria-label="Project tech stack">
+                    {proj.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded border border-white/[0.05] bg-white/[0.01] px-2.5 py-0.5 text-[9px] font-mono text-gray-400 font-semibold tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300 select-none"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
     </section>
-  );
+  )
 }

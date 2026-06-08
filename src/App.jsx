@@ -8,8 +8,9 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Stats from './components/Stats'
 import Contact from './components/Contact'
+import Footer from './components/Footer'
 
-function App() {
+export default function App() {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
@@ -22,35 +23,28 @@ function App() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="relative"
+          transition={{ duration: 0.4 }}
+          className="relative min-h-screen bg-[#0A0A0A]"
         >
-          {/* Noise texture overlay */}
+          {/* Film Grain Noise Texture */}
           <div className="noise-overlay" />
-          
-          {/* Navigation */}
+
+          {/* Core Layout */}
           <Navbar />
           
-          {/* Main content */}
           <main>
             <Hero />
-            <div className="section-divider" />
             <About />
-            <div className="section-divider" />
             <Experience />
-            <div className="section-divider" />
             <Projects />
-            <div className="section-divider" />
             <Skills />
-            <div className="section-divider" />
             <Stats />
-            <div className="section-divider" />
             <Contact />
           </main>
+
+          <Footer />
         </motion.div>
       )}
     </AnimatePresence>
   )
 }
-
-export default App

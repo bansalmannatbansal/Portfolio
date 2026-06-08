@@ -1,197 +1,162 @@
-import { motion } from 'framer-motion';
-import { ChevronDown, ArrowRight, Download, Github, Linkedin } from 'lucide-react';
-import Button from './Button';
+import { motion } from 'framer-motion'
+import { ArrowRight, Download } from 'lucide-react'
+import HeadshotImage from '../assets/mannat_headshot.png'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 15 },
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    },
   },
-};
+}
 
 export default function Hero() {
-  const handleScrollToNext = (e) => {
-    e.preventDefault();
-    const nextSection = document.querySelector('#about');
-    if (nextSection) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = nextSection.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
+  const handleScrollToProjects = (e) => {
+    e.preventDefault()
+    const projectsSec = document.querySelector('#projects')
+    if (projectsSec) {
+      const offset = 80
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = projectsSec.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
 
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
-      });
+      })
     }
-  };
+  }
 
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0A0A0A] pt-24"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0A0A0A] pt-28 pb-20"
     >
-      <div className="portfolio-container grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10">
-        
-        {/* Left: Biography Details */}
-        <motion.div
-          className="lg:col-span-8 flex flex-col text-left items-start"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.06 } }
-          }}
-        >
-          {/* Label */}
-          <motion.div
-            variants={fadeUp}
-            className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#111111] border border-white/[0.08] text-[10px] font-bold uppercase tracking-wider text-gray-400"
-          >
-            Software Engineer &amp; Data Analyst
-          </motion.div>
+      {/* ── Background Grid ── */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.25] pointer-events-none" />
 
-          {/* Name */}
-          <motion.h1
-            variants={fadeUp}
-            className="mb-3 text-4xl sm:text-6xl lg:text-[72px] font-extrabold tracking-tight text-white leading-[1.05]"
-          >
-            Mannat Bansal
-          </motion.h1>
-
-          {/* Subheadline / Title */}
-          <motion.h2
-            variants={fadeUp}
-            className="mb-5 text-lg sm:text-xl font-bold tracking-tight text-gray-300"
-          >
-            Building data-driven applications, backend systems, and AI-powered tools.
-          </motion.h2>
-
-          {/* Supporting Text */}
-          <motion.p
-            variants={fadeUp}
-            className="mb-8 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl"
-          >
-            Currently working on Retrieval-Augmented Generation (RAG) systems and vector databases at Groto while pursuing a B.Tech in Computer Science (Data Science).
-          </motion.p>
-
-          {/* Actions & Links Grid */}
-          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 w-full">
-            {/* View Projects */}
-            <Button
-              variant="primary"
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                const projectsSec = document.querySelector('#projects');
-                if (projectsSec) {
-                  window.scrollTo({
-                    top: projectsSec.getBoundingClientRect().top - document.body.getBoundingClientRect().top - 80,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
-              icon={ArrowRight}
-            >
-              View Projects
-            </Button>
-
-            {/* Resume Download */}
-            <Button
-              variant="secondary"
-              href="/resume.pdf"
-              download
-              icon={Download}
-            >
-              Resume
-            </Button>
-
-            {/* GitHub */}
-            <Button
-              variant="secondary"
-              href="https://github.com/bansalmannatbansal"
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={Github}
-            >
-              GitHub
-            </Button>
-
-            {/* LinkedIn */}
-            <Button
-              variant="secondary"
-              href="https://www.linkedin.com/in/mannat-bansal/"
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={Linkedin}
-            >
-              LinkedIn
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Right: Abstract Terminal Visual (Slightly smaller, cols-4) */}
-        <motion.div
-          className="lg:col-span-4 hidden lg:flex justify-end"
-          initial={{ opacity: 0, x: 15 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="flex flex-col rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden text-left font-mono text-[10px] w-full max-w-[300px] aspect-[4/3] shadow-xl relative">
-            <div className="absolute inset-0 grid-pattern pointer-events-none opacity-40" />
-            <div className="flex items-center gap-1.5 px-3.5 py-2.5 bg-[#151515] border-b border-white/[0.08] relative z-10">
-              <div className="w-2 h-2 rounded-full bg-white/10" />
-              <div className="w-2 h-2 rounded-full bg-white/10" />
-              <div className="w-2 h-2 rounded-full bg-white/10" />
-              <span className="text-[8px] text-gray-500 ml-2 select-none">query.py</span>
-            </div>
-            <div className="p-4 space-y-2.5 text-gray-400 relative z-10 select-none">
-              <div className="flex gap-2">
-                <span className="text-[#3B82F6]">&gt;</span>
-                <span>python run.py --query="portfolio"</span>
-              </div>
-              <div className="text-gray-500 leading-normal text-[9px]">
-                [12:24:09] Scanning chromaDB indexes...
-              </div>
-              <div className="text-[#3B82F6] border-l border-[#3B82F6]/30 pl-3 py-0.5">
-                <div className="font-bold text-white mb-0.5">MATCH [score: 0.99]</div>
-                <div>Name: Mannat Bansal</div>
-                <div>Role: Software Developer</div>
-                <div>Intern: AI Dev @ Groto</div>
-              </div>
-              <div className="flex gap-2">
-                <span className="text-[#3B82F6]">&gt;</span>
-                <span className="animate-pulse">_</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+      {/* ── Giant Outline Monogram Watermark (MB) ── */}
+      <div className="absolute left-[5vw] top-[25%] font-black text-outline-thick text-[25vw] leading-none select-none pointer-events-none opacity-[0.4] z-0">
+        MB
       </div>
 
-      {/* ── Scroll Indicator ── */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.0, duration: 0.4 }}
-      >
-        <a
-          href="#about"
-          onClick={(e) => handleScrollToNext(e)}
-          className="flex flex-col items-center gap-1.5 text-gray-500 transition-colors hover:text-[#3B82F6] focus:outline-none"
-          aria-label="Scroll to about section"
-        >
-          <span className="text-[9px] uppercase tracking-widest font-semibold text-gray-500">Scroll</span>
+      {/* Floating Blur Blobs */}
+      <div className="absolute top-[20%] left-[10%] w-[380px] h-[380px] rounded-full bg-[#6366F1]/6 blur-[140px] animate-float-slow pointer-events-none" />
+      <div className="absolute bottom-[15%] right-[15%] w-[400px] h-[400px] rounded-full bg-[#A78BFA]/5 blur-[150px] animate-float-medium pointer-events-none" />
+
+      {/* ── Content Grid ── */}
+      <div className="portfolio-container relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Column: Biography details */}
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 flex flex-col items-start text-left w-full relative z-10"
           >
-            <ChevronDown className="h-3.5 w-3.5" />
+            {/* Opportunities Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-md text-[9px] font-bold uppercase tracking-widest text-gray-300 select-none"
+            >
+              <span className="h-2 w-2 rounded-full bg-[#818CF8] shadow-[0_0_8px_#818CF8]" />
+              AVAILABLE FOR NEW OPPORTUNITIES
+            </motion.div>
+
+            {/* Giant Heading */}
+            <motion.h1
+              variants={itemVariants}
+              className="mb-4 text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-[#F9FAFB] leading-[0.95]"
+            >
+              MANNAT <br />
+              BANSAL
+            </motion.h1>
+
+            {/* Sub-headline */}
+            <motion.h2
+              variants={itemVariants}
+              className="mb-5 text-lg sm:text-xl font-bold tracking-tight text-[#818CF8]"
+            >
+              Software Engineer &amp; Data Analyst
+            </motion.h2>
+
+            {/* Supporting paragraph description */}
+            <motion.p
+              variants={itemVariants}
+              className="mb-8 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl"
+            >
+              Building data-driven applications, backend systems, and AI-powered solutions with a focus on technical clarity and architectural integrity.
+            </motion.p>
+
+            {/* Button Actions */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-4 w-full"
+            >
+              <a
+                href="#projects"
+                onClick={handleScrollToProjects}
+                className="group inline-flex items-center justify-center gap-2 rounded-full text-xs font-bold uppercase tracking-widest bg-[#818CF8] hover:bg-[#A5B4FC] text-[#0A0A0A] h-12 px-7 transition-all duration-300 shadow-lg shadow-[#818CF8]/10 hover:shadow-[#818CF8]/20 active:scale-[0.98] select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+              >
+                View Projects
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </a>
+
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 rounded-full text-xs font-bold uppercase tracking-widest bg-transparent hover:bg-white/[0.03] text-gray-200 hover:text-white border border-white/[0.08] hover:border-white/[0.15] h-12 px-7 transition-all duration-300 active:scale-[0.98] select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+              >
+                <Download className="w-4 h-4" />
+                Download CV
+              </a>
+            </motion.div>
           </motion.div>
-        </a>
-      </motion.div>
+
+          {/* Right Column: Headshot portrait + vertical CREATIVE DEV text */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center lg:justify-end items-center relative w-full pt-10 lg:pt-0"
+          >
+            <div className="relative w-full max-w-[320px] aspect-[4/5] z-10 flex items-center justify-center">
+              
+              {/* Vertical Rotated Watermark text */}
+              <div className="absolute -left-16 bottom-[10%] text-gray-800 tracking-[0.25em] font-black uppercase text-[5vw] lg:text-[3.5rem] select-none pointer-events-none opacity-[0.22] vertical-text">
+                CREATIVE DEV
+              </div>
+
+              {/* Shifted background box frame */}
+              <div className="absolute -bottom-4 -right-4 w-full h-full border border-white/[0.05] rounded-[32px] pointer-events-none z-0" />
+
+              {/* Headshot image wrapper */}
+              <div className="w-full h-full rounded-[32px] overflow-hidden bg-zinc-950 border border-white/[0.08] relative z-10 hover:border-white/[0.15] transition-all duration-300">
+                <img
+                  src={HeadshotImage}
+                  alt="Mannat Bansal Headshot Portrait"
+                  className="w-full h-full object-cover select-none filter grayscale hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
-  );
+  )
 }

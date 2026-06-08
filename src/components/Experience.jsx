@@ -1,135 +1,116 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
 
-const experiences = [
-  {
-    role: 'AI Developer Intern',
-    company: 'Groto',
-    duration: 'Jun 2026 — Present',
-    location: 'Remote',
-    description:
-      'Collaborating within a small engineering team to build and maintain backend and AI-related features, focusing on context-aware knowledge retrieval tools.',
-    achievements: [
-      'Working on Retrieval-Augmented Generation (RAG) systems for document retrieval.',
-      'Working with ChromaDB and vector databases to index and search content.',
-      'Supporting AI-powered workflows and assisting in engineering prompt patterns.',
-      'Contributing to Python-based backend features and API integrations.',
-    ],
-    tech: ['Python', 'RAG Systems', 'ChromaDB', 'Vector Databases', 'Prompt Engineering', 'Git'],
-  }
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+}
+
+const bulletPoints = [
+  'Engineered backend systems using Python and FastAPI for efficient data processing.',
+  'Implemented Retrieval-Augmented Generation (RAG) pipelines utilizing ChromaDB for optimized vector search.',
+  'Collaborated on AI-powered chat solutions to improve system response accuracy by 30%.',
+]
 
 export default function Experience() {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
     <section
       id="experience"
-      ref={sectionRef}
+      ref={ref}
       className="relative bg-[#0A0A0A] section-padding overflow-hidden"
     >
-      <div className="portfolio-container relative z-10">
+      <div className="portfolio-container relative z-10 w-full">
         
-        {/* Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center md:text-left"
-        >
-          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-            <Briefcase className="w-3.5 h-3.5 text-[#3B82F6]" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
-              Work History
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 w-full">
+          <motion.div
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            variants={fadeUp}
+            className="text-left"
+          >
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8] block mb-2">
+              CAREER PATH
             </span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Experience
-          </h2>
-        </motion.div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tighter leading-none uppercase">
+              PROFESSIONAL EXPERIENCE
+            </h2>
+          </motion.div>
 
-        {/* Timeline Layout */}
-        <div className="relative border-l border-white/[0.08] ml-2.5 sm:ml-4 pl-6 sm:pl-8 space-y-12">
-          {experiences.map((exp, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative group"
+          {/* View Full Resume Link */}
+          <motion.div
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            variants={fadeUp}
+            className="shrink-0 text-left"
+          >
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center gap-1 text-sm font-bold text-gray-400 hover:text-white border-b border-gray-600 hover:border-white pb-0.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+              aria-label="Download Full Resume"
             >
-              {/* Timeline Dot */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border border-white/[0.08] bg-[#0A0A0A] flex items-center justify-center group-hover:border-[#3B82F6] group-hover:shadow-[0_0_12px_rgba(59,130,246,0.4)] transition-all duration-300">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-              </div>
+              View Full Resume
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
 
-              {/* Grid Content */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
-                {/* Date */}
-                <div className="md:col-span-1 pt-0.5">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block">
-                    {exp.duration}
-                  </span>
-                  <span className="text-[11px] text-gray-600 block mt-0.5 font-medium">
-                    {exp.location}
-                  </span>
-                </div>
+        {/* Experience Details Block */}
+        <motion.div
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] } },
+          }}
+          className="glass-card rounded-3xl p-6 sm:p-8 border border-white/[0.06] w-full"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left Column: Role & Meta details */}
+            <div className="lg:col-span-4 flex flex-col items-start text-left space-y-1">
+              <h3 className="text-xl font-extrabold text-white tracking-tight">
+                AI Developer Intern
+              </h3>
+              <p className="text-sm font-bold text-[#818CF8] uppercase tracking-wider flex items-center gap-2">
+                GROTO
+                <span className="text-gray-600 font-mono tracking-normal lowercase">
+                  ── jun ── aug 2024
+                </span>
+              </p>
+            </div>
 
-                {/* Details */}
-                <div className="md:col-span-3 space-y-4">
-                  <div>
-                    <h3 className="text-lg font-bold text-white tracking-tight leading-snug group-hover:text-[#3B82F6] transition-colors duration-200">
-                      {exp.role}
-                    </h3>
-                    <p className="text-sm font-medium text-gray-400 mt-0.5">
-                      {exp.company}
-                    </p>
+            {/* Right Column: Custom Bullet Points timeline track */}
+            <div className="lg:col-span-8 relative pl-8 border-l border-white/[0.06] space-y-8 py-2">
+              {bulletPoints.map((bullet, idx) => (
+                <div key={idx} className="relative text-left">
+                  
+                  {/* Double-circle timeline point bullet */}
+                  <div className="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border border-[#818CF8] bg-[#0A0A0A] flex items-center justify-center shadow-[0_0_6px_rgba(129,138,248,0.2)]">
+                    <div className="h-1.5 w-1.5 rounded-full bg-white" />
                   </div>
 
-                  <p className="text-sm text-gray-400 leading-relaxed max-w-2xl">
-                    {exp.description}
+                  {/* Bullet description text */}
+                  <p className="text-sm sm:text-base text-gray-400 font-normal leading-relaxed">
+                    {bullet}
                   </p>
-
-                  {/* Key Achievements */}
-                  {exp.achievements && exp.achievements.length > 0 && (
-                    <div className="space-y-2.5">
-                      <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                        Key Contributions
-                      </h4>
-                      <ul className="space-y-2" aria-label={`Contributions at ${exp.company}`}>
-                        {exp.achievements.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-xs text-gray-400">
-                            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gray-600" />
-                            <span className="leading-relaxed">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Tech stack tags */}
-                  {exp.tech && exp.tech.length > 0 && (
-                    <div className="pt-2">
-                      <div className="flex flex-wrap gap-1.5">
-                        {exp.tech.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded border border-white/[0.06] bg-[#0A0A0A]/50 px-2 py-0.5 text-[10px] font-mono text-gray-400 font-medium tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              ))}
+            </div>
+
+          </div>
+        </motion.div>
+
       </div>
     </section>
-  );
+  )
 }
