@@ -1,130 +1,99 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code2, BarChart3, Database, Brain, Globe, Wrench } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 
 const skillCategories = [
   {
-    name: 'Programming',
-    icon: Code2,
-    skills: ['Python', 'JavaScript', 'SQL', 'C++'],
+    name: 'Data Analytics',
+    description: 'Analyzing datasets and constructing dynamic reporting solutions.',
+    skills: ['Python', 'SQL', 'Pandas', 'NumPy', 'Power BI', 'Excel', 'Matplotlib', 'Seaborn'],
   },
   {
-    name: 'Data Analytics & Visualization',
-    icon: BarChart3,
-    skills: [
-      'Power BI',
-      'Matplotlib',
-      'Seaborn',
-      'Pandas',
-      'NumPy',
-      'Excel',
-      'Data Cleaning',
-      'EDA',
-    ],
+    name: 'Software Development',
+    description: 'Building client interfaces and scalable backend integration APIs.',
+    skills: ['JavaScript', 'React', 'Flask', 'REST APIs', 'HTML5', 'CSS3'],
   },
   {
-    name: 'Databases',
-    icon: Database,
-    skills: ['MySQL', 'PostgreSQL', 'MongoDB'],
+    name: 'AI & Automation',
+    description: 'Integrating vector search mechanisms and Large Language Models.',
+    skills: ['RAG Systems', 'ChromaDB', 'Vector Databases', 'Prompt Engineering'],
   },
   {
-    name: 'AI & Machine Learning',
-    icon: Brain,
-    skills: [
-      'RAG Systems',
-      'LLM Applications',
-      'Prompt Engineering',
-      'LangChain',
-      'ChromaDB',
-      'ML Fundamentals',
-    ],
-  },
-  {
-    name: 'Web Development',
-    icon: Globe,
-    skills: ['HTML5', 'CSS3', 'JavaScript', 'Flask', 'REST APIs'],
-  },
-  {
-    name: 'Tools',
-    icon: Wrench,
-    skills: ['Git', 'GitHub', 'VS Code', 'Jupyter Notebook'],
+    name: 'Tools & Hardware',
+    description: 'Collaborating using standard git versioning and hardware IDEs.',
+    skills: ['Git', 'GitHub', 'Arduino IDE', 'ESP32'],
   },
 ];
 
-function SkillCard({ category, index }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const Icon = category.icon;
-
+function SkillCategory({ category, index, isInView }) {
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 15 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
         duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: index * 0.08,
+        ease: [0.16, 1, 0.3, 1],
       }}
-      className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-colors duration-300"
+      className="rounded-xl p-6 sm:p-8 glass-card hover:-translate-y-1 hover:shadow-lg hover:shadow-[#3B82F6]/5 transition-all duration-300"
     >
-      <div className="flex items-center gap-3 mb-5">
-        <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20">
-          <Icon className="w-5 h-5 text-blue-400" />
-        </div>
-        <h3 className="text-lg font-semibold text-white">{category.name}</h3>
-      </div>
-
-      <div className="flex flex-wrap gap-2">
+      <h3 className="text-sm font-bold text-white tracking-tight uppercase tracking-widest mb-1 group-hover:text-[#3B82F6] transition-colors">
+        {category.name}
+      </h3>
+      <p className="text-xs text-gray-400 mb-5 leading-relaxed">
+        {category.description}
+      </p>
+      <ul className="flex flex-wrap gap-1.5" aria-label={`${category.name} Skills`}>
         {category.skills.map((skill) => (
-          <span
-            key={skill}
-            className="bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 text-gray-300 hover:text-white rounded-lg px-3 py-2 text-sm transition-all cursor-default"
-          >
-            {skill}
-          </span>
+          <li key={skill}>
+            <span className="inline-block rounded border border-white/[0.06] bg-[#0A0A0A]/50 px-2.5 py-1 text-[10px] font-mono text-gray-400 font-medium tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300 cursor-default select-none">
+              {skill}
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </motion.div>
   );
 }
 
 export default function Skills() {
-  const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true, margin: '-80px' });
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   return (
-    <section id="skills" className="relative py-24 px-6">
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="relative bg-[#0A0A0A] section-padding overflow-hidden"
+    >
+      <div className="portfolio-container relative z-10">
         {/* Section header */}
         <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-12 text-center md:text-left"
         >
-          <span className="inline-block text-sm font-medium tracking-widest uppercase text-blue-400 mb-3">
-            Expertise
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Technical{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-              Skills
+          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <Terminal className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+              Expertise
             </span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Skills
           </h2>
-          <div className="mt-4 mx-auto w-16 h-1 rounded-full bg-gradient-to-r from-blue-500 to-blue-600" />
         </motion.div>
 
         {/* Skills grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => (
-            <SkillCard key={category.name} category={category} index={index} />
+            <SkillCategory
+              key={category.name}
+              category={category}
+              index={index}
+              isInView={isInView}
+            />
           ))}
         </div>
       </div>

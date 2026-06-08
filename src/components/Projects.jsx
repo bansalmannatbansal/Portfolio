@@ -1,39 +1,39 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Github, ExternalLink, Folder } from 'lucide-react';
+import { Github, ExternalLink, Code2 } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Daily Sahayak',
-    description:
-      'A comprehensive daily assistance platform that helps users manage tasks, schedules, and daily routines with intelligent recommendations and real-time notifications.',
-    tech: ['Python', 'Flask', 'REST API', 'HTML/CSS', 'JavaScript'],
-    github: '#',
-    demo: '#',
+    title: 'RAG Knowledge Assistant',
+    description: 'Retrieval-Augmented Generation application built for knowledge retrieval and context-aware responses.',
+    focus: 'Knowledge Retrieval • Vector Search • Backend Engineering',
+    tech: ['Python', 'ChromaDB', 'RAG', 'LLM Integration'],
+    github: 'https://github.com/bansalmannatbansal/rag-knowledge-assistant',
+    demo: null,
   },
   {
     title: 'RishiLearn LMS',
-    description:
-      'Full-stack Learning Management System with course creation, progress tracking, quiz modules, and analytics dashboard for educational institutions.',
-    tech: ['Python', 'Flask', 'MySQL', 'HTML5', 'CSS3', 'JavaScript'],
-    github: '#',
-    demo: '#',
+    description: 'Learning Management System built with Flask containing authentication, leaderboards, and timetable APIs.',
+    focus: 'REST APIs • XP Progress System • Leaderboards',
+    tech: ['Flask', 'Python', 'HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/bansalmannatbansal/rishilearn-lms',
+    demo: null,
   },
   {
-    title: 'Netflix Analytics Dashboard',
-    description:
-      'Interactive data analytics dashboard visualizing Netflix content trends, user engagement patterns, and recommendation insights using advanced data visualization.',
-    tech: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Power BI'],
-    github: '#',
-    demo: '#',
+    title: 'Netflix Data Analysis',
+    description: 'Exploratory data analysis project inspecting 10,000+ Netflix titles to uncover regional outputs and growth trends.',
+    focus: 'Data Cleaning • Data Wrangling • EDA & Visualization',
+    tech: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn'],
+    github: 'https://github.com/bansalmannatbansal/netflix-data-analysis',
+    demo: null,
   },
   {
-    title: 'RAG Chatbot',
-    description:
-      'Intelligent conversational AI chatbot powered by Retrieval-Augmented Generation, capable of answering domain-specific questions from custom knowledge bases.',
-    tech: ['Python', 'LangChain', 'ChromaDB', 'Flask', 'OpenAI API'],
-    github: '#',
-    demo: '#',
+    title: 'PrintLab',
+    description: 'Campus printing Single Page Application with custom client routing, queue state indicators, and animated ordering.',
+    focus: 'Custom SPA Routing • Queue Indicators • Skeleton Loading',
+    tech: ['JavaScript', 'HTML', 'CSS'],
+    github: 'https://github.com/bansalmannatbansal/print-lab',
+    demo: null,
   },
 ];
 
@@ -41,17 +41,17 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -59,57 +59,60 @@ function ProjectCard({ project }) {
   return (
     <motion.div
       variants={cardVariants}
-      whileHover={{ scale: 1.02 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition-colors duration-300 hover:border-blue-500/50"
+      className="group relative flex flex-col justify-between rounded-xl p-6 sm:p-8 glass-card hover:-translate-y-1 hover:shadow-lg hover:shadow-[#3B82F6]/5 transition-all duration-300"
     >
-      {/* Gradient accent bar */}
-      <div className="h-1 w-full bg-gradient-to-r from-blue-500 to-purple-500" />
-
-      <div className="p-6 sm:p-8">
-        {/* Header */}
-        <div className="mb-4 flex items-center gap-3">
-          <Folder className="h-5 w-5 text-blue-400" />
-          <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+      <div className="space-y-4">
+        {/* Title & Links */}
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-[#3B82F6] transition-colors duration-200">
+              {project.title}
+            </h3>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 mt-1">
+              {project.focus}
+            </p>
+          </div>
+          
+          {/* Link Icons */}
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1.5 rounded-lg border border-white/[0.06] bg-[#151515]/60 hover:text-white text-gray-400 hover:border-white/20 transition-all duration-200 hover:scale-105"
+              aria-label={`View GitHub repository for ${project.title}`}
+            >
+              <Github className="w-4 h-4" />
+            </a>
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-lg border border-white/[0.06] bg-[#151515]/60 hover:text-white text-gray-400 hover:border-white/20 transition-all duration-200 hover:scale-105"
+                aria-label={`View live demo for ${project.title}`}
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Description */}
-        <p className="mb-6 leading-relaxed text-gray-400">
+        <p className="text-sm text-gray-400 leading-relaxed font-normal">
           {project.description}
         </p>
 
         {/* Tech stack badges */}
-        <div className="mb-6 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 pt-2" aria-label="Technology stack">
           {project.tech.map((t) => (
             <span
               key={t}
-              className="rounded-full bg-blue-500/10 px-3 py-1 text-xs text-blue-400"
+              className="rounded border border-white/[0.06] bg-[#0A0A0A]/50 px-2 py-0.5 text-[10px] font-mono text-gray-400 font-medium tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300"
             >
               {t}
             </span>
           ))}
-        </div>
-
-        {/* Action buttons */}
-        <div className="flex items-center gap-3">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-4 py-2 text-sm text-gray-300 transition-colors duration-200 hover:border-white/30 hover:text-white"
-          >
-            <Github className="h-4 w-4" />
-            GitHub
-          </a>
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-600"
-          >
-            <ExternalLink className="h-4 w-4" />
-            Live Demo
-          </a>
         </div>
       </div>
     </motion.div>
@@ -121,22 +124,25 @@ export default function Projects() {
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="projects" className="relative px-6 py-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="projects" className="relative bg-[#0A0A0A] section-padding overflow-hidden">
+      <div className="portfolio-container relative z-10">
+        
         {/* Section heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          transition={{ duration: 0.5 }}
+          className="mb-12 text-center md:text-left"
         >
-          <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-            Featured{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <Code2 className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
               Projects
             </span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Featured Projects
           </h2>
-          <div className="mx-auto h-1 w-12 rounded-full bg-blue-500" />
         </motion.div>
 
         {/* Project grid */}
@@ -145,7 +151,7 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid gap-6 sm:grid-cols-2"
+          className="grid gap-6 sm:grid-cols-2 items-stretch"
         >
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />

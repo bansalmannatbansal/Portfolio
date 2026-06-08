@@ -2,20 +2,23 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
 
-const experience = {
-  role: 'AI Developer Intern',
-  company: 'Groto',
-  duration: '2025 — Present',
-  description:
-    'Developed intelligent AI applications leveraging RAG (Retrieval-Augmented Generation) systems, prompt engineering, and LLM integration to build production-grade conversational AI solutions.',
-  achievements: [
-    'Built end-to-end RAG pipeline using LangChain and ChromaDB for document retrieval',
-    'Engineered optimized prompts for domain-specific AI assistants',
-    'Integrated LLM APIs to power intelligent chatbot applications',
-    'Collaborated with cross-functional teams to deploy AI solutions',
-  ],
-  tech: ['RAG', 'LangChain', 'ChromaDB', 'Python', 'Prompt Engineering'],
-};
+const experiences = [
+  {
+    role: 'AI Developer Intern',
+    company: 'Groto',
+    duration: 'Jun 2026 — Present',
+    location: 'Remote',
+    description:
+      'Collaborating within a small engineering team to build and maintain backend and AI-related features, focusing on context-aware knowledge retrieval tools.',
+    achievements: [
+      'Working on Retrieval-Augmented Generation (RAG) systems for document retrieval.',
+      'Working with ChromaDB and vector databases to index and search content.',
+      'Supporting AI-powered workflows and assisting in engineering prompt patterns.',
+      'Contributing to Python-based backend features and API integrations.',
+    ],
+    tech: ['Python', 'RAG Systems', 'ChromaDB', 'Vector Databases', 'Prompt Engineering', 'Git'],
+  }
+];
 
 export default function Experience() {
   const sectionRef = useRef(null);
@@ -25,114 +28,107 @@ export default function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative py-28 px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="relative bg-[#0A0A0A] section-padding overflow-hidden"
     >
-      {/* ── Section heading ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="mb-16"
-      >
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-block h-2 w-2 rounded-full bg-[#3B82F6]" />
-          <span className="text-sm font-medium tracking-widest uppercase text-[#3B82F6]">
-            Experience
-          </span>
-        </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-          Where I've Worked
-        </h2>
-      </motion.div>
-
-      {/* ── Timeline ── */}
-      <div className="relative ml-4 md:ml-8">
-        {/* Vertical timeline line */}
+      <div className="portfolio-container relative z-10">
+        
+        {/* Section Heading */}
         <motion.div
-          initial={{ scaleY: 0 }}
-          animate={isInView ? { scaleY: 1 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-          className="absolute left-0 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-[#3B82F6]/60 via-[#3B82F6]/20 to-transparent"
-        />
-
-        {/* Timeline entry */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.35 }}
-          className="relative pl-10 md:pl-14"
+          transition={{ duration: 0.5 }}
+          className="mb-12 text-center md:text-left"
         >
-          {/* Pulsing timeline dot */}
-          <span className="absolute left-0 top-1 -translate-x-1/2 flex items-center justify-center">
-            <span className="absolute h-5 w-5 rounded-full bg-[#3B82F6]/20 animate-ping" />
-            <span className="relative h-3 w-3 rounded-full bg-[#3B82F6] ring-4 ring-[#3B82F6]/20" />
-          </span>
+          <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <Briefcase className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+              Work History
+            </span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Experience
+          </h2>
+        </motion.div>
 
-          {/* Glassmorphism card */}
-          <div className="group relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 md:p-8 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.07]">
-            {/* Top row — role + duration */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#3B82F6]/10 text-[#3B82F6]">
-                  <Briefcase size={20} />
+        {/* Timeline Layout */}
+        <div className="relative border-l border-white/[0.08] ml-2.5 sm:ml-4 pl-6 sm:pl-8 space-y-12">
+          {experiences.map((exp, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="relative group"
+            >
+              {/* Timeline Dot */}
+              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border border-white/[0.08] bg-[#0A0A0A] flex items-center justify-center group-hover:border-[#3B82F6] group-hover:shadow-[0_0_12px_rgba(59,130,246,0.4)] transition-all duration-300">
+                <div className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+              </div>
+
+              {/* Grid Content */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+                {/* Date */}
+                <div className="md:col-span-1 pt-0.5">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 block">
+                    {exp.duration}
+                  </span>
+                  <span className="text-[11px] text-gray-600 block mt-0.5 font-medium">
+                    {exp.location}
+                  </span>
                 </div>
-                <div>
-                  <h3 className="text-lg md:text-xl font-semibold text-white">
-                    {experience.role}
-                  </h3>
-                  <p className="text-sm text-white/50">{experience.company}</p>
+
+                {/* Details */}
+                <div className="md:col-span-3 space-y-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-white tracking-tight leading-snug group-hover:text-[#3B82F6] transition-colors duration-200">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm font-medium text-gray-400 mt-0.5">
+                      {exp.company}
+                    </p>
+                  </div>
+
+                  <p className="text-sm text-gray-400 leading-relaxed max-w-2xl">
+                    {exp.description}
+                  </p>
+
+                  {/* Key Achievements */}
+                  {exp.achievements && exp.achievements.length > 0 && (
+                    <div className="space-y-2.5">
+                      <h4 className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                        Key Contributions
+                      </h4>
+                      <ul className="space-y-2" aria-label={`Contributions at ${exp.company}`}>
+                        {exp.achievements.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2.5 text-xs text-gray-400">
+                            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gray-600" />
+                            <span className="leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Tech stack tags */}
+                  {exp.tech && exp.tech.length > 0 && (
+                    <div className="pt-2">
+                      <div className="flex flex-wrap gap-1.5">
+                        {exp.tech.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded border border-white/[0.06] bg-[#0A0A0A]/50 px-2 py-0.5 text-[10px] font-mono text-gray-400 font-medium tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-              <span className="text-xs font-medium tracking-wide text-white/40 sm:text-sm">
-                {experience.duration}
-              </span>
-            </div>
-
-            {/* Description */}
-            <p className="mb-5 text-sm leading-relaxed text-white/60 md:text-base">
-              {experience.description}
-            </p>
-
-            {/* Achievements */}
-            <ul className="mb-6 space-y-2.5">
-              {experience.achievements.map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.5 + i * 0.1,
-                    ease: 'easeOut',
-                  }}
-                  className="flex items-start gap-2.5 text-sm text-white/50"
-                >
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]/60" />
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-
-            {/* Tech badges */}
-            <div className="flex flex-wrap gap-2">
-              {experience.tech.map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.7 + i * 0.08,
-                    ease: 'easeOut',
-                  }}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/60 transition-colors duration-200 hover:border-[#3B82F6]/40 hover:text-[#3B82F6]"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

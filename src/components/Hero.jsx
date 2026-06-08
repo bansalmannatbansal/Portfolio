@@ -1,135 +1,196 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, ArrowRight, Download } from 'lucide-react';
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
-    },
-  },
-};
+import { ChevronDown, ArrowRight, Download, Github, Linkedin } from 'lucide-react';
+import Button from './Button';
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
-const blobVariants = (duration, xRange, yRange) => ({
-  animate: {
-    x: xRange,
-    y: yRange,
-    scale: [1, 1.1, 0.95, 1.05, 1],
-    transition: {
-      duration,
-      repeat: Infinity,
-      repeatType: 'mirror',
-      ease: 'easeInOut',
-    },
-  },
-});
-
 export default function Hero() {
+  const handleScrollToNext = (e) => {
+    e.preventDefault();
+    const nextSection = document.querySelector('#about');
+    if (nextSection) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = nextSection.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0A0A0A]"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0A0A0A] pt-24"
     >
-      {/* ── Floating gradient blobs ── */}
-      <motion.div
-        className="pointer-events-none absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#3B82F6]/20 blur-[120px]"
-        variants={blobVariants(18, [0, 60, -30, 0], [0, 40, -20, 0])}
-        animate="animate"
-      />
-      <motion.div
-        className="pointer-events-none absolute -bottom-40 right-0 h-[600px] w-[600px] rounded-full bg-[#8B5CF6]/15 blur-[140px]"
-        variants={blobVariants(22, [0, -50, 30, 0], [0, -30, 50, 0])}
-        animate="animate"
-      />
-      <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#3B82F6]/10 blur-[100px]"
-        variants={blobVariants(20, [0, 40, -40, 0], [0, -50, 20, 0])}
-        animate="animate"
-      />
-
-      {/* ── Content ── */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center px-6 text-center"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Subtitle */}
-        <motion.p
-          variants={fadeUp}
-          className="mb-4 text-xl uppercase tracking-wide text-gray-400"
+      <div className="portfolio-container grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10">
+        
+        {/* Left: Biography Details */}
+        <motion.div
+          className="lg:col-span-8 flex flex-col text-left items-start"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.06 } }
+          }}
         >
-          Software Engineer &amp; Data Analyst
-        </motion.p>
+          {/* Label */}
+          <motion.div
+            variants={fadeUp}
+            className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#111111] border border-white/[0.08] text-[10px] font-bold uppercase tracking-wider text-gray-400"
+          >
+            Software Engineer &amp; Data Analyst
+          </motion.div>
 
-        {/* Name */}
-        <motion.h1
-          variants={fadeUp}
-          className="mb-6 text-7xl font-black leading-tight tracking-tight md:text-8xl"
-        >
-          <span className="bg-gradient-to-r from-white via-[#3B82F6] to-white bg-clip-text text-transparent">
+          {/* Name */}
+          <motion.h1
+            variants={fadeUp}
+            className="mb-3 text-4xl sm:text-6xl lg:text-[72px] font-extrabold tracking-tight text-white leading-[1.05]"
+          >
             Mannat Bansal
-          </span>
-        </motion.h1>
+          </motion.h1>
 
-        {/* Description */}
-        <motion.p
-          variants={fadeUp}
-          className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-gray-500"
-        >
-          Building data-driven applications, analytics dashboards, and
-          AI-powered solutions.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-4">
-          {/* Primary – View Projects */}
-          <a
-            href="#projects"
-            className="group relative inline-flex items-center gap-2 rounded-full bg-[#3B82F6] px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.45)]"
+          {/* Subheadline / Title */}
+          <motion.h2
+            variants={fadeUp}
+            className="mb-5 text-lg sm:text-xl font-bold tracking-tight text-gray-300"
           >
-            View Projects
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+            Building data-driven applications, backend systems, and AI-powered tools.
+          </motion.h2>
 
-          {/* Outline – Download Resume */}
-          <a
-            href="/resume.pdf"
-            download
-            className="group inline-flex items-center gap-2 rounded-full border border-gray-700 px-8 py-3.5 text-sm font-semibold text-gray-300 transition-all duration-300 hover:border-blue-500 hover:text-white"
+          {/* Supporting Text */}
+          <motion.p
+            variants={fadeUp}
+            className="mb-8 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl"
           >
-            <Download className="h-4 w-4" />
-            Download Resume
-          </a>
+            Currently working on Retrieval-Augmented Generation (RAG) systems and vector databases at Groto while pursuing a B.Tech in Computer Science (Data Science).
+          </motion.p>
+
+          {/* Actions & Links Grid */}
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 w-full">
+            {/* View Projects */}
+            <Button
+              variant="primary"
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                const projectsSec = document.querySelector('#projects');
+                if (projectsSec) {
+                  window.scrollTo({
+                    top: projectsSec.getBoundingClientRect().top - document.body.getBoundingClientRect().top - 80,
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              icon={ArrowRight}
+            >
+              View Projects
+            </Button>
+
+            {/* Resume Download */}
+            <Button
+              variant="secondary"
+              href="/resume.pdf"
+              download
+              icon={Download}
+            >
+              Resume
+            </Button>
+
+            {/* GitHub */}
+            <Button
+              variant="secondary"
+              href="https://github.com/bansalmannatbansal"
+              target="_blank"
+              rel="noopener noreferrer"
+              icon={Github}
+            >
+              GitHub
+            </Button>
+
+            {/* LinkedIn */}
+            <Button
+              variant="secondary"
+              href="https://www.linkedin.com/in/mannat-bansal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              icon={Linkedin}
+            >
+              LinkedIn
+            </Button>
+          </motion.div>
         </motion.div>
-      </motion.div>
 
-      {/* ── Scroll indicator ── */}
+        {/* Right: Abstract Terminal Visual (Slightly smaller, cols-4) */}
+        <motion.div
+          className="lg:col-span-4 hidden lg:flex justify-end"
+          initial={{ opacity: 0, x: 15 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="flex flex-col rounded-xl border border-white/[0.08] bg-[#111111] overflow-hidden text-left font-mono text-[10px] w-full max-w-[300px] aspect-[4/3] shadow-xl relative">
+            <div className="absolute inset-0 grid-pattern pointer-events-none opacity-40" />
+            <div className="flex items-center gap-1.5 px-3.5 py-2.5 bg-[#151515] border-b border-white/[0.08] relative z-10">
+              <div className="w-2 h-2 rounded-full bg-white/10" />
+              <div className="w-2 h-2 rounded-full bg-white/10" />
+              <div className="w-2 h-2 rounded-full bg-white/10" />
+              <span className="text-[8px] text-gray-500 ml-2 select-none">query.py</span>
+            </div>
+            <div className="p-4 space-y-2.5 text-gray-400 relative z-10 select-none">
+              <div className="flex gap-2">
+                <span className="text-[#3B82F6]">&gt;</span>
+                <span>python run.py --query="portfolio"</span>
+              </div>
+              <div className="text-gray-500 leading-normal text-[9px]">
+                [12:24:09] Scanning chromaDB indexes...
+              </div>
+              <div className="text-[#3B82F6] border-l border-[#3B82F6]/30 pl-3 py-0.5">
+                <div className="font-bold text-white mb-0.5">MATCH [score: 0.99]</div>
+                <div>Name: Mannat Bansal</div>
+                <div>Role: Software Developer</div>
+                <div>Intern: AI Dev @ Groto</div>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-[#3B82F6]">&gt;</span>
+                <span className="animate-pulse">_</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ── Scroll Indicator ── */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.8 }}
+        transition={{ delay: 1.0, duration: 0.4 }}
       >
-        <motion.a
+        <a
           href="#about"
-          className="flex flex-col items-center gap-1 text-gray-500 transition-colors hover:text-[#3B82F6]"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          onClick={(e) => handleScrollToNext(e)}
+          className="flex flex-col items-center gap-1.5 text-gray-500 transition-colors hover:text-[#3B82F6] focus:outline-none"
+          aria-label="Scroll to about section"
         >
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <ChevronDown className="h-5 w-5" />
-        </motion.a>
+          <span className="text-[9px] uppercase tracking-widest font-semibold text-gray-500">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ChevronDown className="h-3.5 w-3.5" />
+          </motion.div>
+        </a>
       </motion.div>
     </section>
   );

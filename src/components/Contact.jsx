@@ -1,122 +1,144 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Linkedin, Github, Mail, ArrowUpRight } from "lucide-react";
-
-const links = [
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/mannatbansal",
-    icon: Linkedin,
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/mannatbansal",
-    icon: Github,
-  },
-  {
-    name: "Email",
-    href: "mailto:mannatbansal@email.com",
-    icon: Mail,
-  },
-];
+import { Linkedin, Github, Mail, Copy, Check, Download } from "lucide-react";
+import Button from "./Button";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 15 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.6, ease: "easeOut" },
+    transition: { delay: i * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   }),
 };
 
 export default function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [copied, setCopied] = useState(false);
+  const emailAddress = "mannatbansal0307@gmail.com";
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(emailAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden">
-      {/* subtle top glow */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[480px] w-[640px] rounded-full bg-blue-500/[0.04] blur-3xl" />
-      </div>
+    <section id="contact" className="relative bg-[#0A0A0A] section-padding overflow-hidden">
+      <div ref={ref} className="portfolio-container relative z-10 text-center">
+        
+        {/* Header / CTA */}
+        <div className="max-w-2xl mx-auto mb-10">
+          <motion.div
+            variants={fadeUp}
+            custom={0}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="flex items-center justify-center gap-2 mb-2"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+              Get in Touch
+            </span>
+          </motion.div>
 
-      <div ref={ref} className="relative mx-auto max-w-3xl px-6 text-center">
-        {/* heading */}
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
-        >
-          Get In Touch
-        </motion.h2>
+          <motion.h2
+            variants={fadeUp}
+            custom={1}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mb-4"
+          >
+            Let's Build Something Meaningful
+          </motion.h2>
 
-        <motion.p
-          variants={fadeUp}
-          custom={1}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-gray-400"
-        >
-          I'm always open to discussing new opportunities, interesting projects,
-          and collaborations.
-        </motion.p>
-
-        {/* social cards */}
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {links.map((link, i) => {
-            const Icon = link.icon;
-            return (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                variants={fadeUp}
-                custom={i + 2}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative flex items-center justify-center gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.03] px-6 py-5 backdrop-blur-md transition-colors duration-300 hover:border-blue-500/50 hover:bg-white/[0.06]"
-              >
-                <Icon className="h-5 w-5 text-[#3B82F6]" />
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                  {link.name}
-                </span>
-                <ArrowUpRight className="h-4 w-4 text-gray-600 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#3B82F6]" />
-              </motion.a>
-            );
-          })}
+          <motion.p
+            variants={fadeUp}
+            custom={2}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-lg mx-auto"
+          >
+            I am actively looking for{' '}
+            <strong className="text-white font-semibold">Software Engineer</strong>{' '}
+            and{' '}
+            <strong className="text-white font-semibold">Data Analyst</strong>{' '}
+            roles. If you have an opening that matches my profile or would like to discuss my work, please reach out!
+          </motion.p>
         </div>
 
-        {/* CTA button */}
+        {/* Buttons Grid */}
         <motion.div
           variants={fadeUp}
-          custom={5}
+          custom={3}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mt-12"
+          className="flex flex-wrap items-center justify-center gap-3 max-w-xl mx-auto mb-16"
         >
-          <a
-            href="mailto:mannatbansal@email.com"
-            className="inline-flex items-center gap-2 rounded-full bg-[#3B82F6] px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:bg-blue-400 hover:shadow-blue-500/40 hover:scale-105 active:scale-[0.98]"
+          {/* Email Copy */}
+          <Button
+            variant="primary"
+            onClick={handleCopyEmail}
+            icon={copied ? Check : Copy}
           >
-            <Mail className="h-4 w-4" />
-            Say Hello
-          </a>
+            {copied ? "Copied Email!" : "Copy Email"}
+          </Button>
+
+          {/* Mailto Link */}
+          <Button
+            variant="secondary"
+            href={`mailto:${emailAddress}`}
+            icon={Mail}
+          >
+            Send Email
+          </Button>
+
+          {/* LinkedIn */}
+          <Button
+            variant="secondary"
+            href="https://www.linkedin.com/in/mannat-bansal/"
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={Linkedin}
+          >
+            LinkedIn
+          </Button>
+
+          {/* GitHub */}
+          <Button
+            variant="secondary"
+            href="https://github.com/bansalmannatbansal"
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={Github}
+          >
+            GitHub
+          </Button>
+
+          {/* Resume Download */}
+          <Button
+            variant="secondary"
+            href="/resume.pdf"
+            download
+            icon={Download}
+          >
+            Resume
+          </Button>
         </motion.div>
 
-        {/* footer */}
-        <motion.p
+        {/* Footer info */}
+        <motion.div
           variants={fadeUp}
-          custom={6}
+          custom={4}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mt-24 text-xs text-gray-600"
+          className="border-t border-white/[0.08] pt-8"
         >
-          © 2026 Mannat Bansal. Built with passion and code.
-        </motion.p>
+          <p className="text-[10px] text-gray-500 font-semibold tracking-wide uppercase">
+            © 2026 Mannat Bansal. Student B.Tech CS (Data Science) • AI Developer Intern at Groto.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
