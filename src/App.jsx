@@ -34,11 +34,11 @@ export default function App() {
           
           <main>
             <Hero />
+            <Stats />
             <About />
             <Experience />
             <Projects />
             <Skills />
-            <Stats />
             <Contact />
           </main>
 

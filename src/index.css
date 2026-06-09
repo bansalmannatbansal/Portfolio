@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #6366F1;
-  --color-secondary: #A78BFA;
-  --color-bg: #0A0A0A;
+  --color-primary: #AFC2FF;
+  --color-secondary: #8F9AAD;
+  --color-bg: #0B0B0D;
   --color-surface: rgba(255, 255, 255, 0.04);
   --color-border-subtle: rgba(255, 255, 255, 0.08);
-  --color-text-primary: #F9FAFB;
-  --color-text-secondary: #9CA3AF;
+  --color-text-primary: #F2F0F3;
+  --color-text-secondary: #B8BBC6;
   --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -20,13 +20,13 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 88px;
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #0A0A0A;
-  color: #F9FAFB;
+  background-color: #0B0B0D;
+  color: #F2F0F3;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -36,48 +36,56 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #0B0B0D;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.15);
 }
 
 ::selection {
-  background: rgba(99, 102, 241, 0.25);
-  color: #F9FAFB;
+  background: rgba(175, 194, 255, 0.28);
+  color: #F2F0F3;
 }
 
 /* Focused elements custom outline */
 *:focus-visible {
-  outline: 2px solid #6366F1;
+  outline: 2px solid #AFC2FF;
   outline-offset: 4px;
 }
 
 /* Unified Layout Container */
 .portfolio-container {
-  max-width: 56rem; /* 896px */
+  max-width: 112rem;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: clamp(1.25rem, 4rem, 4rem);
+  padding-right: clamp(1.25rem, 4rem, 4rem);
 }
 
 /* Section Spacings */
+:root {
+  --section-vertical-pad-desktop: 112px;
+  --section-vertical-pad-mobile: 64px;
+}
+
 .section-padding {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: var(--section-vertical-pad-desktop);
+  padding-bottom: var(--section-vertical-pad-desktop);
 }
 
 @media (max-width: 768px) {
   .section-padding {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: var(--section-vertical-pad-mobile);
+    padding-bottom: var(--section-vertical-pad-mobile);
   }
 }
 
@@ -87,21 +95,19 @@ body {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.015;
+  opacity: 0.012;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* Glassmorphic Cards styling */
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #151518;
+  border: 1px solid rgba(255, 255, 255, 0.075);
 }
 
 /* Grid background pattern */
 .grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
   background-size: 30px 30px;
@@ -109,12 +115,12 @@ body {
 
 /* Text outline utilities for watermarks */
 .text-outline {
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.045);
   color: transparent;
 }
 
 .text-outline-thick {
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 2px rgba(175, 194, 255, 0.08);
   color: transparent;
 }
 
@@ -123,31 +129,4 @@ body {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-}
-
-/* Floating Animations */
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-15px) scale(1.05);
-  }
-}
-
-@keyframes float-medium {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-20px) translateX(15px) scale(0.95);
-  }
-}
-
-.animate-float-slow {
-  animation: float-slow 10s ease-in-out infinite;
-}
-
-.animate-float-medium {
-  animation: float-medium 8s ease-in-out infinite;
 }

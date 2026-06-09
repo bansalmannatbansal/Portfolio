@@ -28,9 +28,9 @@ const projects = [
   {
     num: '01',
     category: 'AI / MACHINE LEARNING',
-    title: 'RAG Knowledge Assistant',
-    description: 'Semantic search and knowledge retrieval system using vector embeddings and RAG architecture.',
-    tags: ['Python', 'ChromaDB', 'RAG', 'LLM'],
+    title: 'RAG Knowledge Engine',
+    description: 'High-performance retrieval system architected with LangChain and vector databases to empower private-data intelligence.',
+    tags: ['Python', 'ChromaDB'],
     image: RagThumb,
     github: 'https://github.com/bansalmannatbansal/rag-knowledge-assistant',
     demo: null,
@@ -38,7 +38,7 @@ const projects = [
   {
     num: '02',
     category: 'LMS PLATFORM',
-    title: 'RishiLearn LMS',
+    title: 'RishiLearn',
     description: 'Full-stack learning management system with course catalog, leaderboard, XP system, and attendance tracking.',
     tags: ['Flask', 'Python', 'REST APIs', 'SQLite'],
     image: RishiThumb,
@@ -48,9 +48,9 @@ const projects = [
   {
     num: '03',
     category: 'DATA ENGINEERING',
-    title: 'Netflix Data Analysis',
-    description: 'Exploratory data analysis on 10,000+ Netflix titles — cleaning, regional trends, and visualization.',
-    tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
+    title: 'Netflix Insight Lab',
+    description: 'Deciphering global content consumption patterns through intensive data modeling and Power BI visualization.',
+    tags: ['Python', 'Pandas'],
     image: NetflixThumb,
     github: 'https://github.com/bansalmannatbansal/netflix-data-analysis',
     demo: null,
@@ -58,9 +58,9 @@ const projects = [
   {
     num: '04',
     category: 'FRONTEND SPA',
-    title: 'PrintLab',
-    description: 'Campus printing SPA with custom routing, skeleton loading, cart ordering, and queue indicators.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    title: 'PrintLab OS',
+    description: 'Campus print workflow architecture with cart ordering, queue indicators, and responsive SPA flows.',
+    tags: ['JavaScript', 'CSS'],
     image: PrintlabThumb,
     github: 'https://github.com/bansalmannatbansal/print-lab',
     demo: '#',
@@ -75,14 +75,14 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative bg-[#0A0A0A] section-padding overflow-hidden"
+      className="relative bg-[#0B0B0D] section-padding overflow-hidden"
     >
       <div className="portfolio-container relative z-10 w-full">
         
         {/* Section Heading Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14 w-full relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-20 w-full relative min-h-72">
           {/* Giant background PROJECTS watermark */}
-          <div className="absolute left-0 -top-8 font-black text-outline text-[12vw] leading-none select-none pointer-events-none opacity-[0.25] z-0">
+          <div className="absolute -left-24 -top-10 hidden lg:block font-black text-outline text-[15rem] leading-none select-none pointer-events-none opacity-[0.25] z-0">
             PROJECTS
           </div>
 
@@ -91,12 +91,12 @@ export default function Projects() {
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={cardVariants}
-            className="lg:col-span-6 text-left relative z-10 pl-2"
+            className="lg:col-span-6 text-left relative z-10"
           >
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#818CF8] block mb-2">
+            <span className="text-sm font-bold uppercase tracking-widest text-[#AFC2FF] block mb-8">
               SELECTED WORK
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tighter leading-none uppercase">
+            <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white tracking-normal leading-[0.95]">
               Portfolio <br />
               Projects
             </h2>
@@ -107,9 +107,9 @@ export default function Projects() {
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={cardVariants}
-            className="lg:col-span-6 text-left relative z-10 lg:pb-1"
+            className="lg:col-span-5 lg:col-start-8 text-left relative z-10 lg:pb-8"
           >
-            <p className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-md border-l border-white/[0.08] pl-5">
+            <p className="text-xl sm:text-2xl text-[#C8CAD3] leading-relaxed max-w-xl border-l border-white/[0.12] pl-7">
               Technical solutions blending AI engineering, full-stack development, and data-driven narratives.
             </p>
           </motion.div>
@@ -120,32 +120,36 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid gap-8 sm:grid-cols-2 items-stretch w-full"
+          className="grid gap-8 lg:grid-cols-12 items-start w-full"
         >
-          {projects.map((proj) => (
+          {projects.map((proj, idx) => (
             <motion.div
               key={proj.title}
               variants={cardVariants}
-              whileHover={{ y: -4, boxShadow: '0 12px 35px rgba(129,138,248,0.05)' }}
-              className="group relative flex flex-col justify-between rounded-3xl p-6 border border-white/[0.06] bg-white/[0.01] hover:border-white/[0.12] transition-all duration-300 overflow-hidden"
+              whileHover={{ y: -4 }}
+              className={`group relative flex flex-col justify-between rounded-lg border border-white/[0.06] bg-[#111114] hover:border-white/[0.12] transition-all duration-300 overflow-hidden ${
+                idx === 0 ? 'lg:col-span-7' : idx === 1 ? 'lg:col-span-5 lg:mt-20' : 'lg:col-span-6'
+              }`}
             >
-              <div className="space-y-5 flex flex-col h-full justify-between">
+              <div className="flex flex-col h-full justify-between">
                 
                 {/* 1. Card Top Metadata Row */}
-                <div className="flex items-center justify-between w-full">
+                <div className="absolute left-6 top-6 z-20 flex items-center justify-between w-[calc(100%-3rem)]">
                   {/* Outline Number index */}
-                  <span className="text-xl font-black text-outline font-mono select-none tracking-tighter leading-none">
+                  <span className="text-5xl font-black text-white/25 select-none tracking-normal leading-none">
                     {proj.num}
                   </span>
 
                   {/* Category Pill badge */}
-                  <span className="rounded-full bg-white/[0.02] border border-white/[0.08] px-3.5 py-1 text-[8px] font-extrabold tracking-widest text-[#818CF8] uppercase">
+                  <span className="rounded-full bg-[#AFC2FF] px-4 py-1 text-xs font-bold tracking-widest text-[#101013] uppercase">
                     {proj.category}
                   </span>
                 </div>
 
                 {/* 2. Visual Image Thumbnail */}
-                <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden bg-zinc-950 border border-white/[0.04] relative select-none">
+                <div className={`w-full overflow-hidden bg-zinc-950 relative select-none ${
+                  idx === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'
+                }`}>
                   <img
                     src={proj.image}
                     alt={`${proj.title} Thumbnail`}
@@ -154,9 +158,9 @@ export default function Projects() {
                 </div>
 
                 {/* 3. Description & Links Block */}
-                <div className="space-y-4 pt-2">
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-[#818CF8] transition-colors duration-300">
+                <div className="space-y-5 p-8">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-3xl font-black text-white tracking-normal group-hover:text-[#AFC2FF] transition-colors duration-300">
                       {proj.title}
                     </h3>
 
@@ -166,7 +170,7 @@ export default function Projects() {
                         href={proj.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 rounded-lg border border-white/[0.06] bg-white/[0.02] text-gray-400 hover:text-white hover:border-white/20 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+                        className="p-2 rounded-lg border border-white/[0.08] bg-white/[0.02] text-[#AFC2FF] hover:text-white hover:border-white/20 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFC2FF]"
                         aria-label={`View GitHub repository for ${proj.title}`}
                       >
                         <Github className="w-4 h-4" />
@@ -176,7 +180,7 @@ export default function Projects() {
                           href={proj.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-2 rounded-lg border border-white/[0.06] bg-white/[0.02] text-gray-400 hover:text-white hover:border-white/20 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+                          className="p-2 rounded-lg border border-white/[0.08] bg-white/[0.02] text-[#AFC2FF] hover:text-white hover:border-white/20 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFC2FF]"
                           aria-label={`View live demo for ${proj.title}`}
                         >
                           <ExternalLink className="w-4 h-4" />
@@ -185,7 +189,7 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-normal text-left">
+                  <p className="text-lg text-[#C8CAD3] leading-relaxed font-normal text-left max-w-2xl">
                     {proj.description}
                   </p>
 
@@ -194,7 +198,7 @@ export default function Projects() {
                     {proj.tags.map((t) => (
                       <span
                         key={t}
-                        className="rounded border border-white/[0.05] bg-white/[0.01] px-2.5 py-0.5 text-[9px] font-mono text-gray-400 font-semibold tracking-wide hover:border-white/20 hover:text-white transition-colors duration-300 select-none"
+                        className="rounded border border-white/[0.08] bg-white/[0.015] px-3 py-1 text-sm text-[#B8BBC6] font-semibold tracking-normal hover:border-white/20 hover:text-white transition-colors duration-300 select-none"
                       >
                         {t}
                       </span>

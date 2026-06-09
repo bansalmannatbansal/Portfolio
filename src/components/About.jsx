@@ -19,35 +19,34 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="relative bg-[#0A0A0A] section-padding overflow-hidden"
+      className="relative bg-[#0B0B0D] section-padding overflow-hidden"
     >
       <div className="portfolio-container relative z-10 w-full">
         
         {/* ── Main Bio & Vision Row ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 items-start w-full mb-12">
           
           {/* Left Column: Heading Layout */}
           <motion.div
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             variants={fadeUp}
-            className="lg:col-span-4 flex flex-col items-start text-left relative"
+            className="lg:col-span-4 flex flex-col items-start text-left relative min-h-56"
           >
             {/* Giant Number Watermark */}
-            <div className="absolute -left-6 -top-12 text-[10rem] sm:text-[12rem] font-black text-outline select-none pointer-events-none opacity-[0.35] leading-none z-0">
+            <div className="absolute -left-6 -top-14 text-[10rem] sm:text-[13rem] font-black text-outline select-none pointer-events-none opacity-[0.45] leading-none z-0">
               01
             </div>
 
             {/* Main Headings */}
             <div className="relative z-10 mt-6 pl-2">
-              <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tighter leading-none uppercase">
+              <h2 className="text-5xl sm:text-6xl font-black text-white tracking-normal leading-none uppercase">
                 ABOUT
               </h2>
-              <h3 className="text-4xl sm:text-5xl font-black text-[#818CF8] tracking-tighter leading-none uppercase mt-1">
+              <h3 className="text-5xl sm:text-6xl font-black text-[#AFC2FF] tracking-normal leading-none uppercase mt-1">
                 VISION
               </h3>
-              {/* Short line decoration */}
-              <div className="h-[3px] w-14 bg-[#818CF8] mt-4" />
+              <div className="h-[3px] w-28 bg-[#AFC2FF] mt-6" />
             </div>
           </motion.div>
 
@@ -59,15 +58,15 @@ export default function About() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] } },
             }}
-            className="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-8 border border-white/[0.06] flex flex-col justify-between"
+            className="lg:col-span-8 glass-card rounded-lg p-7 sm:p-10 lg:p-12 border border-white/[0.07] flex flex-col justify-between"
           >
             {/* Blockquote italicized statement */}
-            <blockquote className="border-l-[3px] border-l-[#818CF8] pl-5 mb-6 text-base sm:text-lg text-white font-medium italic leading-relaxed">
+            <blockquote className="border-l-[4px] border-l-[#AFC2FF] pl-7 mb-8 text-xl sm:text-2xl text-white font-medium italic leading-relaxed">
               "My journey is driven by a passion for solving complex problems through code and data insights."
             </blockquote>
 
             {/* Biography paragraphs */}
-            <div className="space-y-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+            <div className="space-y-5 text-[#C8CAD3] text-lg sm:text-xl leading-relaxed">
               <p>
                 I am a B.Tech CS student specializing in Data Science. During my tenure as an AI Developer Intern at Groto, I focused on building scalable backend architectures and integrating advanced AI models to enhance user experiences.
               </p>
@@ -79,7 +78,7 @@ export default function About() {
         </div>
 
         {/* ── Sub-Cards Row (Education & Current Path) ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full lg:pl-[38%]">
           
           {/* Card 1: Education */}
           <motion.div
@@ -90,21 +89,21 @@ export default function About() {
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] } },
             }}
             whileHover={{ y: -4 }}
-            className="glass-card rounded-3xl p-6 sm:p-7 border border-white/[0.06] hover:shadow-[0_8px_30px_rgba(99,102,241,0.04)] transition-all duration-300 flex flex-col items-start text-left"
+            className="glass-card rounded-lg p-7 sm:p-9 border border-white/[0.07] transition-all duration-300 flex flex-col items-start text-left"
           >
-            <h3 className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">
+            <h3 className="text-[#AFC2FF] text-3xl font-black tracking-normal mb-7">
               Education
             </h3>
             
             <div className="flex gap-4 w-full">
-              <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-[#818CF8] shrink-0">
+              <div className="p-3 rounded-lg bg-[#252936] border border-white/[0.06] text-[#AFC2FF] shrink-0">
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                <h4 className="text-lg font-bold text-white tracking-normal">
                   B.Tech in CS (Data Science)
                 </h4>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-normal">
+                <p className="text-base text-[#B8BBC6] leading-relaxed font-normal">
                   Relevant Coursework: DBMS, AI, Machine Learning, Data Structures
                 </p>
               </div>
@@ -120,21 +119,21 @@ export default function About() {
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] } },
             }}
             whileHover={{ y: -4 }}
-            className="glass-card rounded-3xl p-6 sm:p-7 border border-white/[0.06] hover:shadow-[0_8px_30px_rgba(99,102,241,0.04)] transition-all duration-300 flex flex-col items-start text-left"
+            className="glass-card rounded-lg p-7 sm:p-9 border border-white/[0.07] transition-all duration-300 flex flex-col items-start text-left"
           >
-            <h3 className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">
+            <h3 className="text-[#AFC2FF] text-3xl font-black tracking-normal mb-7">
               Current Path
             </h3>
 
             <div className="flex gap-4 w-full">
-              <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-[#818CF8] shrink-0">
+              <div className="p-3 rounded-lg bg-[#252936] border border-white/[0.06] text-[#AFC2FF] shrink-0">
                 <TrendingUp className="w-5 h-5" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                <h4 className="text-lg font-bold text-white tracking-normal">
                   Active Learning
                 </h4>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-normal">
+                <p className="text-base text-[#B8BBC6] leading-relaxed font-normal">
                   Constantly exploring RAG, LLMs, and modern Cloud architectures.
                 </p>
               </div>

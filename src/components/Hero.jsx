@@ -44,23 +44,17 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0A0A0A] pt-28 pb-20"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#101013] pt-32 pb-20"
     >
-      {/* ── Background Grid ── */}
-      <div className="absolute inset-0 grid-pattern opacity-[0.25] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_20%,rgba(255,255,255,0.035),transparent_22%),linear-gradient(180deg,#121216_0%,#101013_55%,#0b0b0d_100%)] pointer-events-none" />
 
-      {/* ── Giant Outline Monogram Watermark (MB) ── */}
-      <div className="absolute left-[5vw] top-[25%] font-black text-outline-thick text-[25vw] leading-none select-none pointer-events-none opacity-[0.4] z-0">
+      <div className="absolute left-10 top-48 hidden lg:block font-black text-outline-thick text-[12rem] xl:text-[16rem] leading-none select-none pointer-events-none opacity-[0.35] z-0">
         MB
       </div>
 
-      {/* Floating Blur Blobs */}
-      <div className="absolute top-[20%] left-[10%] w-[380px] h-[380px] rounded-full bg-[#6366F1]/6 blur-[140px] animate-float-slow pointer-events-none" />
-      <div className="absolute bottom-[15%] right-[15%] w-[400px] h-[400px] rounded-full bg-[#A78BFA]/5 blur-[150px] animate-float-medium pointer-events-none" />
-
       {/* ── Content Grid ── */}
       <div className="portfolio-container relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
           
           {/* Left Column: Biography details */}
           <motion.div
@@ -72,16 +66,16 @@ export default function Hero() {
             {/* Opportunities Badge */}
             <motion.div
               variants={itemVariants}
-              className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-md text-[9px] font-bold uppercase tracking-widest text-gray-300 select-none"
+              className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.035] text-[0.72rem] font-bold uppercase tracking-widest text-[#B8BBC6] select-none"
             >
-              <span className="h-2 w-2 rounded-full bg-[#818CF8] shadow-[0_0_8px_#818CF8]" />
+              <span className="h-2 w-2 rounded-full bg-[#AFC2FF] shadow-[0_0_8px_#AFC2FF]" />
               AVAILABLE FOR NEW OPPORTUNITIES
             </motion.div>
 
             {/* Giant Heading */}
             <motion.h1
               variants={itemVariants}
-              className="mb-4 text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-[#F9FAFB] leading-[0.95]"
+              className="mb-8 text-7xl sm:text-8xl lg:text-[9rem] xl:text-[11rem] font-black tracking-normal text-[#F2F0F3] leading-[0.86]"
             >
               MANNAT <br />
               BANSAL
@@ -90,7 +84,7 @@ export default function Hero() {
             {/* Sub-headline */}
             <motion.h2
               variants={itemVariants}
-              className="mb-5 text-lg sm:text-xl font-bold tracking-tight text-[#818CF8]"
+              className="mb-5 text-3xl sm:text-4xl font-black italic tracking-normal text-[#AFC2FF]"
             >
               Software Engineer &amp; Data Analyst
             </motion.h2>
@@ -98,7 +92,7 @@ export default function Hero() {
             {/* Supporting paragraph description */}
             <motion.p
               variants={itemVariants}
-              className="mb-8 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl"
+              className="mb-10 text-lg sm:text-xl text-[#C8CAD3] leading-relaxed max-w-2xl"
             >
               Building data-driven applications, backend systems, and AI-powered solutions with a focus on technical clarity and architectural integrity.
             </motion.p>
@@ -111,7 +105,7 @@ export default function Hero() {
               <a
                 href="#projects"
                 onClick={handleScrollToProjects}
-                className="group inline-flex items-center justify-center gap-2 rounded-full text-xs font-bold uppercase tracking-widest bg-[#818CF8] hover:bg-[#A5B4FC] text-[#0A0A0A] h-12 px-7 transition-all duration-300 shadow-lg shadow-[#818CF8]/10 hover:shadow-[#818CF8]/20 active:scale-[0.98] select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full text-base font-bold bg-[#AFC2FF] hover:bg-[#C4D1FF] text-[#101013] h-14 px-9 transition-all duration-300 shadow-lg shadow-[#AFC2FF]/10 hover:shadow-[#AFC2FF]/20 active:scale-[0.98] select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFC2FF]"
               >
                 View Projects
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -120,7 +114,7 @@ export default function Hero() {
               <a
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center justify-center gap-2 rounded-full text-xs font-bold uppercase tracking-widest bg-transparent hover:bg-white/[0.03] text-gray-200 hover:text-white border border-white/[0.08] hover:border-white/[0.15] h-12 px-7 transition-all duration-300 active:scale-[0.98] select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#818CF8]"
+                className="inline-flex items-center justify-center gap-2 rounded-full text-base font-bold bg-transparent hover:bg-white/[0.03] text-gray-200 hover:text-white border border-white/[0.1] hover:border-white/[0.18] h-14 px-9 transition-all duration-300 active:scale-[0.98] select-none cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFC2FF]"
               >
                 <Download className="w-4 h-4" />
                 Download CV
@@ -135,18 +129,18 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex justify-center lg:justify-end items-center relative w-full pt-10 lg:pt-0"
           >
-            <div className="relative w-full max-w-[320px] aspect-[4/5] z-10 flex items-center justify-center">
+            <div className="relative w-full max-w-[520px] aspect-[4/5] z-10 flex items-center justify-center">
               
               {/* Vertical Rotated Watermark text */}
-              <div className="absolute -left-16 bottom-[10%] text-gray-800 tracking-[0.25em] font-black uppercase text-[5vw] lg:text-[3.5rem] select-none pointer-events-none opacity-[0.22] vertical-text">
-                CREATIVE DEV
+              <div className="absolute -left-14 bottom-[8%] hidden xl:block text-[#343846] font-black uppercase text-7xl select-none pointer-events-none opacity-[0.5] vertical-text">
+                CREATIVE
               </div>
 
               {/* Shifted background box frame */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full border border-white/[0.05] rounded-[32px] pointer-events-none z-0" />
+              <div className="absolute -bottom-7 -right-7 w-full h-full border border-[#AFC2FF]/15 rounded-lg pointer-events-none z-0" />
 
               {/* Headshot image wrapper */}
-              <div className="w-full h-full rounded-[32px] overflow-hidden bg-zinc-950 border border-white/[0.08] relative z-10 hover:border-white/[0.15] transition-all duration-300">
+              <div className="w-full h-full rounded-lg overflow-hidden bg-zinc-950 border border-white/[0.08] relative z-10 hover:border-white/[0.15] transition-all duration-300">
                 <img
                   src={HeadshotImage}
                   alt="Mannat Bansal Headshot Portrait"
