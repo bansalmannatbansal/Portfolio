@@ -78,7 +78,7 @@ export default function Projects() {
       className="relative bg-[#0B0B0D] section-padding overflow-hidden"
     >
       <div className="portfolio-container relative z-10 w-full">
-        
+
         {/* Section Heading Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-20 w-full relative min-h-72">
           {/* Giant background PROJECTS watermark */}
@@ -127,12 +127,11 @@ export default function Projects() {
               key={proj.title}
               variants={cardVariants}
               whileHover={{ y: -4 }}
-              className={`group relative flex flex-col justify-between rounded-lg border border-white/[0.06] bg-[#111114] hover:border-white/[0.12] transition-all duration-300 overflow-hidden ${
-                idx === 0 ? 'lg:col-span-7' : idx === 1 ? 'lg:col-span-5 lg:mt-20' : 'lg:col-span-6'
-              }`}
+              className={`group relative flex flex-col justify-between rounded-lg border border-white/[0.06] bg-[#111114] hover:border-white/[0.12] transition-all duration-300 overflow-hidden ${idx === 0 ? 'lg:col-span-7' : idx === 1 ? 'lg:col-span-5 lg:mt-20' : 'lg:col-span-6'
+                }`}
             >
               <div className="flex flex-col h-full justify-between">
-                
+
                 {/* 1. Card Top Metadata Row */}
                 <div className="absolute left-6 top-6 z-20 flex items-center justify-between w-[calc(100%-3rem)]">
                   {/* Outline Number index */}
@@ -147,9 +146,8 @@ export default function Projects() {
                 </div>
 
                 {/* 2. Visual Image Thumbnail */}
-                <div className={`w-full overflow-hidden bg-zinc-950 relative select-none ${
-                  idx === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'
-                }`}>
+                <div className={`w-full overflow-hidden bg-zinc-950 relative select-none ${idx === 0 ? 'aspect-[16/10]' : 'aspect-[4/3]'
+                  }`}>
                   <img
                     src={proj.image}
                     alt={`${proj.title} Thumbnail`}

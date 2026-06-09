@@ -55,7 +55,7 @@ export default function Hero() {
       {/* ── Content Grid ── */}
       <div className="portfolio-container relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16 items-center">
-          
+
           {/* Left Column: Biography details */}
           <motion.div
             variants={containerVariants}
@@ -75,7 +75,7 @@ export default function Hero() {
             {/* Giant Heading */}
             <motion.h1
               variants={itemVariants}
-              className="mb-8 text-7xl sm:text-8xl lg:text-[9rem] xl:text-[11rem] font-black tracking-normal text-[#F2F0F3] leading-[0.86]"
+              className="relative w-full max-w-[420px] xl:max-w-[480px] aspect-[4/5] text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-[#F9FAFB] leading-[0.95]"
             >
               MANNAT <br />
               BANSAL
@@ -84,7 +84,7 @@ export default function Hero() {
             {/* Sub-headline */}
             <motion.h2
               variants={itemVariants}
-              className="mb-5 text-3xl sm:text-4xl font-black italic tracking-normal text-[#AFC2FF]"
+              className="mb-5 text-lg sm:text-xl font-bold tracking-tight text-[#818CF8]"
             >
               Software Engineer &amp; Data Analyst
             </motion.h2>
@@ -130,7 +130,7 @@ export default function Hero() {
             className="lg:col-span-5 flex justify-center lg:justify-end items-center relative w-full pt-10 lg:pt-0"
           >
             <div className="relative w-full max-w-[520px] aspect-[4/5] z-10 flex items-center justify-center">
-              
+
               {/* Vertical Rotated Watermark text */}
               <div className="absolute -left-14 bottom-[8%] hidden xl:block text-[#343846] font-black uppercase text-7xl select-none pointer-events-none opacity-[0.5] vertical-text">
                 CREATIVE

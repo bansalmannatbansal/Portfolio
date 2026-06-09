@@ -23,7 +23,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const sections = ['hero', 'projects', 'skills']
-    
+
     const handleIntersect = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -36,7 +36,7 @@ export default function Navbar() {
       rootMargin: '-40% 0px -50% 0px',
       threshold: 0.15,
     })
-    
+
     sections.forEach((id) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
@@ -69,11 +69,10 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
             ? 'bg-[#101013]/92 backdrop-blur-md border-b border-white/[0.08] py-4'
             : 'bg-[#111114]/88 backdrop-blur-md border-b border-white/[0.06] py-5'
-        }`}
+          }`}
         aria-label="Global navigation"
       >
         <div className="portfolio-container flex items-center justify-between">
@@ -96,9 +95,8 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative py-1 text-base font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFC2FF] rounded-sm ${
-                    isActive ? 'text-[#AFC2FF]' : 'text-[#B8BBC6] hover:text-white'
-                  }`}
+                  className={`relative py-1 text-base font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFC2FF] rounded-sm ${isActive ? 'text-[#AFC2FF]' : 'text-[#B8BBC6] hover:text-white'
+                    }`}
                 >
                   {link.name}
                   {isActive && (
@@ -162,9 +160,8 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 + i * 0.05 }}
-                    className={`text-xl font-bold uppercase tracking-widest transition-colors ${
-                      isActive ? 'text-[#AFC2FF]' : 'text-gray-300 hover:text-white'
-                    }`}
+                    className={`text-xl font-bold uppercase tracking-widest transition-colors ${isActive ? 'text-[#AFC2FF]' : 'text-gray-300 hover:text-white'
+                      }`}
                   >
                     {link.name}
                   </motion.a>
