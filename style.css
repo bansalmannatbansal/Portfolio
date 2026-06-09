@@ -1308,6 +1308,8 @@
   box-shadow: 0 15px 30px rgba(91, 110, 245, 0.15);
 }
 
+
+
 .periwinkle-card-num {
   font-family: var(--font-display);
   font-size: 1.25rem;
@@ -1342,22 +1344,40 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1.5rem;
-  align-items: start;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  transition: var(--transition-smooth);
+}
+
+.analysis-list-item:hover {
+  border-color: rgba(91, 110, 245, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(91, 110, 245, 0.1);
 }
 
 .analysis-num {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: var(--accent-primary);
-  line-height: 1;
-  padding-top: 0.25rem;
+  background: rgba(91, 110, 245, 0.1);
+  border: 1px solid rgba(91, 110, 245, 0.25);
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(91, 110, 245, 0.15);
 }
 
 .analysis-content strong {
   color: var(--text-white);
   display: block;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   margin-bottom: 0.25rem;
 }
 
