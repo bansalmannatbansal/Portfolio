@@ -184,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (downloadTxtBtn) {
     downloadTxtBtn.addEventListener('click', () => {
       const resumeText = `
-MANNAT BANSAL
-Software Engineer & Data Analyst
+MANNAT
+Software Developer & Data Analyst
 Email: mannatbansal0307@gmail.com | Portfolio: Web
 
 EDUCATION:
@@ -194,22 +194,24 @@ EDUCATION:
 
 EXPERIENCE:
 - AI Developer Intern at GROTO (Jun — Aug 2024)
-  • Engineered backend systems using Python and FastAPI for efficient data processing.
-  • Implemented Retrieval-Augmented Generation (RAG) pipelines utilizing ChromaDB for optimized vector search.
-  • Collaborated on AI-powered chat solutions to improve system response accuracy by 30%.
+  • Working on Retrieval-Augmented Generation (RAG) systems for knowledge retrieval
+  • Integrating and managing vector databases (ChromaDB) for semantic search
+  • Developing backend AI workflows and pipelines
+  • Collaborating within a small engineering team on AI application development
+  • Exploring LLM integration and prompt engineering techniques
 
 TECHNICAL SKILLS:
-- Languages: Python, JavaScript, SQL, C++
-- Data Science & AI: LangChain, Vector Databases (ChromaDB, Pinecone), Pandas, NumPy
-- Databases: PostgreSQL, MySQL, MongoDB
-- Tools: Git, GitHub, VS Code, Jupyter, Power BI
+- Software Development: JavaScript, React, Flask, REST APIs, HTML5, CSS3
+- Data Analytics: Python, SQL, Pandas, NumPy, Power BI, Excel, Matplotlib, Seaborn
+- AI & Automation: RAG Systems, ChromaDB, Vector Databases, Prompt Engineering
+- Tools: Git, GitHub, Arduino IDE, ESP32
       `.trim();
 
       const blob = new Blob([resumeText], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'Mannat_Bansal_Resume.txt';
+      link.download = 'Mannat_Resume.txt';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -221,7 +223,7 @@ TECHNICAL SKILLS:
   const triggerPdfBtn = document.getElementById('trigger-mock-pdf');
   if (triggerPdfBtn) {
     triggerPdfBtn.addEventListener('click', () => {
-      alert("Initiating mock PDF Download for Mannat Bansal CV!");
+      alert("Initiating mock PDF Download for Mannat CV!");
       resumeModal.close();
     });
   }
