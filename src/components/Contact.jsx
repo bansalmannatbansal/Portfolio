@@ -125,7 +125,7 @@ export default function Contact() {
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] } },
             }}
             whileHover={{ y: -4 }}
-            className="group glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_30px_rgba(99,102,241,0.05)] border border-white/[0.06]"
+            className="group glass-card rounded-xl p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden transition-all duration-300 hover:shadow-[0_12px_30px_rgba(99,102,241,0.05)] border border-white/[0.06]"
           >
             <div className="absolute inset-0 grid-pattern opacity-[0.15] pointer-events-none" />
 
